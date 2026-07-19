@@ -123,7 +123,7 @@ export default function App() {
 
       {/* ── 2 · Thesis ───────────────────────────────────────────── */}
       <Slide center nav="Thesis" notes="Lead with the decision consequence, not the headline AUC. The current data remain useful, but only for narrower questions than the preregistered semantic claim.">
-        <h2 className="headline" style={{ marginInline: 'auto', fontSize: '92%' }}>
+        <h2 className="headline" style={{ marginInline: 'auto', fontSize: '96%' }}>
           The probe learned something.
           <br />
           BC1 shows we cannot attribute it to{' '}
@@ -186,7 +186,7 @@ export default function App() {
       {/* ── 5 · Three objects ────────────────────────────────────── */}
       <Slide center nav="What BC1 measures" notes="This slide removes the overloaded word semantic. Distinguish the stimulus manipulation, the intended task variable, and the internal representation.">
         <p className="kicker" style={{ marginInline: 'auto' }}>The objects must stay separate</p>
-        <h2 className="headline" style={{ marginInline: 'auto', fontSize: '92%' }}>
+        <h2 className="headline" style={{ marginInline: 'auto', fontSize: '96%' }}>
           Stimulus changes. Target intent does not. Representation is measured.
         </h2>
         <div style={{ maxWidth: '58rem', marginInline: 'auto' }}>
@@ -209,7 +209,7 @@ export default function App() {
       {/* ── 6 · Gateway ──────────────────────────────────────────── */}
       <Slide center nav="BC1 gateway" notes="BC1 is a binary tolerance criterion, not a variance estimator. It determines whether the evidence can support attribution to the intended quantity.">
         <p className="kicker" style={{ marginInline: 'auto' }}>Level 0 · experimental identifiability</p>
-        <h2 className="headline" style={{ marginInline: 'auto', fontSize: '92%' }}>
+        <h2 className="headline" style={{ marginInline: 'auto', fontSize: '96%' }}>
           BC1 is the gateway: <span className="accent-text">|AUC − 0.50| ≤ 0.03</span>
         </h2>
         <div style={{ maxWidth: '54rem', marginInline: 'auto' }}>
@@ -248,7 +248,7 @@ export default function App() {
       {/* ── 8 · Verdict ──────────────────────────────────────────── */}
       <Slide center nav="BC1 fails" notes="AUC 0.000 and 1.000 are equally perfect discrimination after orientation; BC1 is evaluated by distance from chance. Keep the encoding panel explicitly labeled as supporting sensitivity evidence, not the amended hard-gate scope.">
         <p className="kicker" style={{ marginInline: 'auto' }}>Level 0 · criterion outcome</p>
-        <h2 className="headline" style={{ marginInline: 'auto', fontSize: '92%' }}>
+        <h2 className="headline" style={{ marginInline: 'auto', fontSize: '96%' }}>
           The neutral-intent null remained separable.
         </h2>
         <div style={{ maxWidth: '56rem', marginInline: 'auto' }}>
@@ -279,7 +279,7 @@ export default function App() {
       {/* ── 9 · Layerwise support ────────────────────────────────── */}
       <Slide nav="Null by layer" notes="This is a supporting Level-1 measurement. It shows persistent discriminability of the encoding-null labels, not that a specific surface mechanism has already been identified.">
         <p className="kicker">Supporting analysis · layerwise null separability</p>
-        <h2 className="headline" style={{ fontSize: '92%' }}>The encoding-null labels remain discriminable throughout the residual stream.</h2>
+        <h2 className="headline" style={{ fontSize: '96%' }}>The encoding-null labels remain discriminable throughout the residual stream.</h2>
         <p className="subhead" style={{ maxWidth: '52rem' }}>
           Mean distance from chance <span style={{ whiteSpace: 'nowrap', fontVariantNumeric: 'tabular-nums' }}>|AUC − 0.5|</span> across
           eight encoding variants. The chart localizes persistence and depth; it does not
@@ -369,7 +369,7 @@ export default function App() {
       {/* ── 13 · What remains unresolved ─────────────────────────── */}
       <Slide center nav="Open questions" notes="Transition from results to plan. Every month should answer one unresolved question, not merely execute a list of analyses.">
         <p className="kicker" style={{ marginInline: 'auto' }}>What BC1 leaves us with</p>
-        <h2 className="headline" style={{ marginInline: 'auto', fontSize: '92%' }}>
+        <h2 className="headline" style={{ marginInline: 'auto', fontSize: '96%' }}>
           Four questions now organize the research program.
         </h2>
         <div style={{ maxWidth: '58rem', marginInline: 'auto' }}>
@@ -402,7 +402,7 @@ export default function App() {
       {/* ── 15 · Four-month plan ─────────────────────────────────── */}
       <Slide nav="Four months" notes="The timeline is organized by scientific questions. Phase I stays within claims licensed by the current data; the final month specifies and pilots the crossed design needed for Level 2.">
         <p className="kicker">Four-month research arc</p>
-        <h2 className="headline" style={{ fontSize: '92%' }}>
+        <h2 className="headline" style={{ fontSize: '96%' }}>
           Explain the failure. Quantify the nuisance structure. Test use.{' '}
           <span className="accent-text">Build identification.</span>
         </h2>
@@ -437,7 +437,7 @@ export default function App() {
       {/* ── 16 · Milestones ──────────────────────────────────────── */}
       <Slide center nav="Milestones" notes="Make the plan assessable. These milestones are outputs and decision points, not promises of a positive result.">
         <p className="kicker" style={{ marginInline: 'auto' }}>Completion criteria</p>
-        <h2 className="headline" style={{ marginInline: 'auto', fontSize: '92%' }}>
+        <h2 className="headline" style={{ marginInline: 'auto', fontSize: '96%' }}>
           Four months produce four decision-ready artifacts.
         </h2>
         <div style={{ maxWidth: '58rem', marginInline: 'auto' }}>
@@ -462,24 +462,24 @@ export default function App() {
       {/* ── 17 · Closer ──────────────────────────────────────────── */}
       <Slide center nav="The result" notes="End with the scientific discipline demonstrated by the project: the null changed the claim and generated a sharper research program.">
         <Reveal>
-          <h2 className="display" style={{ marginInline: 'auto' }}>
+          <h2 className="display" style={{ marginInline: 'auto', maxWidth: '24ch', fontSize: 'clamp(2.25rem, 4.5vw, 3.8rem)', lineHeight: 1.02 }}>
             BC1 blocked the intended attribution.
           </h2>
         </Reveal>
         <Build at={1}>
-          <h2 className="display" style={{ marginInline: 'auto' }}>
+          <h2 className="display" style={{ marginInline: 'auto', maxWidth: '24ch', fontSize: 'clamp(2.25rem, 4.5vw, 3.8rem)', lineHeight: 1.02 }}>
             The remaining metrics explain the observed geometry —{' '}
             <span className="accent-text">not adversarial intent.</span>
           </h2>
         </Build>
         <Build at={2}>
-          <h2 className="display" style={{ marginInline: 'auto' }}>
+          <h2 className="display" style={{ marginInline: 'auto', maxWidth: '24ch', fontSize: 'clamp(2.25rem, 4.5vw, 3.8rem)', lineHeight: 1.02 }}>
             The next four months turn that failure into an identifiable experiment.
           </h2>
         </Build>
         <p
           className="kicker"
-          style={{ marginInline: 'auto', marginTop: '2.75rem', opacity: 0.55 }}
+          style={{ marginInline: 'auto', marginTop: '1.5rem', opacity: 0.55 }}
         >
           © Katherine Ombrellaro 2026
         </p>
