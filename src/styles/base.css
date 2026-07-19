@@ -172,7 +172,7 @@ strong {
   letter-spacing: -0.03em;
   line-height: 1.04;
   font-size: clamp(32px, 5.2vw, 58px);
-  max-width: 18ch;
+  max-width: 24ch;
 }
 
 .lead {
