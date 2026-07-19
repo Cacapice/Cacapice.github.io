@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import Deck from './deck/Deck';
 import Slide from './deck/Slide';
 import Build from './deck/Build';
@@ -27,34 +27,6 @@ import { BarChart } from './components/Charts';
    determination itself.
    © Katherine Ombrellaro 2026
    ══════════════════════════════════════════════════════════════════════ */
-
-/* ── Fit-to-viewport scaling ─────────────────────────────────────────
-   Scale from a 1440×820 reference viewport while preserving the authored
-   typographic hierarchy. The clamp prevents extreme shrinking or enlargement.
-   Individual dense slides can still use local type adjustments.              */
-const DECK_SCALE = 0.85;
-const REFERENCE_VIEWPORT = { w: 1440, h: 820 };
-
-function useDeckFit(): void {
-  useEffect(() => {
-    const prev = document.documentElement.style.fontSize;
-    const apply = () => {
-      const raw = Math.min(
-        window.innerWidth / REFERENCE_VIEWPORT.w,
-        window.innerHeight / REFERENCE_VIEWPORT.h,
-      );
-      const clamped = Math.min(Math.max(raw, 0.75), 1.15);
-      document.documentElement.style.fontSize =
-        `${DECK_SCALE * clamped * 100}%`;
-    };
-    apply();
-    window.addEventListener('resize', apply);
-    return () => {
-      window.removeEventListener('resize', apply);
-      document.documentElement.style.fontSize = prev;
-    };
-  }, []);
-}
 
 
 type ThreePaneStat = {
@@ -128,8 +100,6 @@ function ThreePaneRow({ stats }: { stats: ThreePaneStat[] }) {
 }
 
 export default function App() {
-  useDeckFit();
-
   return (
     <Deck>
       {/* ── 1 · Cover ─────────────────────────────────────────────── */}
@@ -308,7 +278,7 @@ export default function App() {
           eight encoding variants. The chart localizes persistence and depth; it does not
           identify which nuisance component owns the variance.
         </p>
-        <div style={{ maxWidth: '60rem', fontSize: '85%' }}>
+        <div style={{ maxWidth: '64rem', width: '100%', fontSize: '100%' }}>
           <BarChart
             data={[
               { label: 'L4', value: 0.402 },
@@ -318,7 +288,7 @@ export default function App() {
               { label: 'L25', value: 0.483 },
               { label: 'L31', value: 0.343 },
             ]}
-            height={230}
+            height={280}
           />
         </div>
       </Slide>
