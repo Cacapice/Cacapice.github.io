@@ -108,6 +108,21 @@ function ThresholdBarChart({
           zIndex: 0,
         }}
       />
+      {/* dotted threshold line at the tolerance value (top edge of the band) */}
+      <div
+        aria-hidden="true"
+        title={`Tolerance threshold: ${threshold.toFixed(2)}`}
+        style={{
+          position: "absolute",
+          left: plotLeft,
+          right: plotRight,
+          bottom: `calc(${bandBottom} + ${bandHeight})`,
+          borderTop: "2px dotted currentColor",
+          opacity: 0.55,
+          pointerEvents: "none",
+          zIndex: 2,
+        }}
+      />
       <div style={{ position: "relative", zIndex: 1 }}>
         <BarChart data={data} height={height} />
       </div>
@@ -128,7 +143,7 @@ export default function App() {
           </>
         }
         subtitle="BC1 result · what the numbers actually mean · next four months"
-        foot="© Katherine Ombrellaro 2026 · Maritime Intent Probe · post–Amendment 2 exploratory analyses"
+        foot="© Katherine Ombrellaro 2026 · Maritime Intent Probe · exploratory analyses under the OSF preregistration amendment"
         notes="This is a research-plan discussion anchored in the BC1 outcome. Keep three claims separate: BC1 blocks attribution to adversarial intent under the current design; supporting analyses characterize what remains measurable; the four-month plan develops the next estimands and designs. Roadmap (no agenda slide in this version): design → outcome → placement of the existing numbers → plan. Meeting objective: agree on the four-month program."
       />
 
@@ -443,7 +458,7 @@ export default function App() {
           </span>
         </div>
         <p className="subhead" style={{ fontSize: "88%", opacity: 0.7 }}>
-          shaded band: admissible deviation 0–0.03 · diagnostic peak 0.3884 ·
+          dotted line: 0.03 tolerance · shaded band: admissible deviation 0–0.03 · diagnostic peak 0.3884 ·
           hard-gate worst 0.347
         </p>
       </Slide>
