@@ -8,7 +8,6 @@ import Section from './components/Section';
 import Agenda from './components/Agenda';
 import Steps from './components/Steps';
 import BigNumber from './components/BigNumber';
-import StatGrid from './components/StatGrid';
 import CountUp from './components/CountUp';
 import Contrast from './components/Contrast';
 import Timeline from './components/Timeline';
@@ -29,18 +28,24 @@ import { BarChart } from './components/Charts';
    ══════════════════════════════════════════════════════════════════════ */
 
 
-type ThreePaneStat = {
+type AnalyticalPane = {
   value: ReactNode;
   label: string;
   caption: string;
 };
 
-function ThreePaneRow({ stats }: { stats: ThreePaneStat[] }) {
+function AnalyticalPaneRow({
+  stats,
+  columns,
+}: {
+  stats: AnalyticalPane[];
+  columns: 3 | 4;
+}) {
   return (
     <div
       style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+        gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
         gap: '1rem',
         width: '100%',
       }}
@@ -50,8 +55,8 @@ function ThreePaneRow({ stats }: { stats: ThreePaneStat[] }) {
           key={`${stat.label}-${index}`}
           style={{
             minWidth: 0,
-            minHeight: '10.5rem',
-            padding: '1.4rem 1.3rem',
+            minHeight: columns === 4 ? '9.5rem' : '10.5rem',
+            padding: columns === 4 ? '1.15rem 1rem' : '1.4rem 1.3rem',
             border: '1px solid rgba(255,255,255,0.14)',
             borderRadius: '1rem',
             background:
@@ -65,7 +70,7 @@ function ThreePaneRow({ stats }: { stats: ThreePaneStat[] }) {
           <div
             className="accent-text"
             style={{
-              fontSize: '2.15rem',
+              fontSize: columns === 4 ? '1.8rem' : '2.15rem',
               lineHeight: 1,
               fontWeight: 700,
               marginBottom: '0.9rem',
@@ -76,7 +81,7 @@ function ThreePaneRow({ stats }: { stats: ThreePaneStat[] }) {
           </div>
           <div
             style={{
-              fontSize: '1rem',
+              fontSize: columns === 4 ? '0.9rem' : '1rem',
               lineHeight: 1.2,
               fontWeight: 650,
               marginBottom: '0.55rem',
@@ -86,7 +91,7 @@ function ThreePaneRow({ stats }: { stats: ThreePaneStat[] }) {
           </div>
           <div
             style={{
-              fontSize: '0.82rem',
+              fontSize: columns === 4 ? '0.74rem' : '0.82rem',
               lineHeight: 1.45,
               opacity: 0.58,
             }}
@@ -185,7 +190,8 @@ export default function App() {
           Stimulus changes. Target intent does not. Representation is measured.
         </h2>
         <div style={{ maxWidth: '58rem', marginInline: 'auto' }}>
-          <ThreePaneRow
+          <AnalyticalPaneRow
+            columns={3}
             stats={[
               { value: 'ΔX', label: 'Stimulus', caption: 'adversarial-register family vs neutral-register family' },
               { value: '0', label: 'Target contrast', caption: 'neutral routing intent in both classes' },
@@ -246,7 +252,8 @@ export default function App() {
           The neutral-intent null remained separable.
         </h2>
         <div style={{ maxWidth: '56rem', marginInline: 'auto' }}>
-          <StatGrid
+          <AnalyticalPaneRow
+            columns={4}
             stats={[
               { value: 'FAIL', label: 'BC1 decision', caption: 'null AUC exceeded the ±0.03 tolerance' },
               { value: '0.50', label: 'Distance from chance', caption: 'perfect discrimination after orientation' },
@@ -366,7 +373,8 @@ export default function App() {
           Four questions now organize the research program.
         </h2>
         <div style={{ maxWidth: '58rem', marginInline: 'auto' }}>
-          <StatGrid
+          <AnalyticalPaneRow
+            columns={4}
             stats={[
               { value: '1', label: 'Why is the null separable?', caption: 'scale, template, variant, ambient geometry?' },
               { value: '2', label: 'What owns the variation?', caption: 'formal variance components with uncertainty' },
@@ -433,7 +441,8 @@ export default function App() {
           Four months produce four decision-ready artifacts.
         </h2>
         <div style={{ maxWidth: '58rem', marginInline: 'auto' }}>
-          <StatGrid
+          <AnalyticalPaneRow
+            columns={4}
             stats={[
               { value: 'M1', label: 'Geometry report', caption: 'scale-controlled effects, LayerNorm response, uncertainty' },
               { value: 'M2', label: 'Variance report', caption: 'template / variant / residual VPCs with intervals' },
