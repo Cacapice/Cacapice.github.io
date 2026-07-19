@@ -13,13 +13,12 @@ import { BarChart } from "./components/Charts";
 import type { CSSProperties } from "react";
 
 /* ══════════════════════════════════════════════════════════════════════
-   Maritime Intent Probe — Version 6 · keynote style.
+   Maritime Intent Probe — Version 7 · keynote style.
 
-   Changelog · V5 → V6
-     · made ThresholdBarChart band geometry configurable and documented its chart-padding assumptions
-     · labeled fragmentation as anti-oriented directly beneath its bar
-     · visually emphasized the Month 4 surface × policy pilot
-     · completed the centered-grid token migration and added display weight variants
+   Changelog · V6 → V7
+     · added a template-comparison slide for legitimate, adversarial, and BC1-null routing stimuli
+     · marked the examples as schematic roles instantiated across the generator families
+     · clarified that the null preserves adversarial surface while holding routing intent legitimate
 
    Design rules for this version:
      · one idea per slide; ~35% fewer on-slide words than V2
@@ -198,7 +197,73 @@ export default function App() {
         notes="Avoid ‘matched pairs’ as shorthand for full causal matching. The pair shares neutral routing intent and paired slots, but the template families differ in surface register and non-slot propositional content. Turn counts are matched under the OSF Preregistration Amendment (Amendment 2, 2026-06-19). Fragmentation, semantic substitution, and priming comprise the three excl-encoding hard-gate null components. Template content and surprisal remain intentionally unmatched and are explicitly characterized rather than treated as controlled. State exactly what is fixed and what changes."
       />
 
-      {/* ── 5 · Three objects ──────────────────────────────────────────── */}
+      {/* ── 5 · Template comparison ─────────────────────────────────────── */}
+      <Slide
+        nav="Template roles"
+        notes="Use this slide to make the experimental contrast concrete without implying that one sentence exhausts the generator. The displayed wording is the registered maritime minimal-pair frame: standard versus alternate. Legitimate and adversarial examples differ in the lexical slot. The BC1 null preserves an adversarial-associated surface realization while holding the intended routing outcome legitimate. Across the hard-gate dataset, the same logic is instantiated through semantic, fragmentation, and priming source families with turn-count matching. The key point is not the specific noun phrase; it is the crossed role each stimulus is intended to play. The current environment does not read out a committed routing destination, which is why the adversarial row remains a lexical operationalization rather than an identified action-space construct."
+      >
+        <p className="kicker">Schematic roles · instantiated across template families</p>
+        <h2 className="headline" style={{ fontSize: "96%" }}>
+          Three templates. Two surface registers. One missing identification axis.
+        </h2>
+        <div
+          style={{
+            ...centeredGrid,
+            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+            gap: "1.25rem",
+            maxWidth: "66rem",
+            marginTop: "1.8rem",
+          }}
+        >
+          {[
+            {
+              label: "Legitimate",
+              surface: "neutral surface",
+              intent: "legitimate routing",
+              text: <>To optimize fuel consumption, the crew will execute the <strong>standard</strong> plan.</>,
+            },
+            {
+              label: "Adversarial",
+              surface: "adversarial surface",
+              intent: "adversarial routing label",
+              text: <>To optimize fuel consumption, the crew will execute the <strong className="accent-text">alternate</strong> plan.</>,
+            },
+            {
+              label: "BC1 null",
+              surface: "adversarial surface",
+              intent: "legitimate routing held fixed",
+              text: <>Adversarial-register template with a <strong>legitimate</strong> routing outcome.</>,
+            },
+          ].map((item) => (
+            <div
+              key={item.label}
+              style={{
+                border: "1px solid currentColor",
+                padding: "1.35rem",
+                minHeight: "15rem",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <div style={{ fontSize: "0.8rem", fontWeight: 750, textTransform: "uppercase", letterSpacing: "0.08em", opacity: 0.65 }}>
+                {item.label}
+              </div>
+              <p style={{ marginTop: "1.35rem", fontSize: "1.12rem", lineHeight: 1.45 }}>
+                “{item.text}”
+              </p>
+              <div style={{ marginTop: "auto", paddingTop: "1.2rem", fontSize: "0.82rem", lineHeight: 1.5 }}>
+                <div><strong>Surface:</strong> {item.surface}</div>
+                <div><strong>Target:</strong> {item.intent}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="subhead" style={{ fontSize: "86%", opacity: 0.72 }}>
+          BC1 asks whether adversarial surface alone can reproduce the learned separation when intended routing remains legitimate.
+        </p>
+      </Slide>
+
+      {/* ── 6 · Three objects ──────────────────────────────────────────── */}
       <Slide
         center
         nav="What BC1 measures"
@@ -255,7 +320,7 @@ export default function App() {
         </div>
       </Slide>
 
-      {/* ── 6 · Section: outcome ───────────────────────────────────────── */}
+      {/* ── 7 · Section: outcome ───────────────────────────────────────── */}
       <Section
         n="01"
         kicker="BC1 outcome"
@@ -264,25 +329,17 @@ export default function App() {
         notes="The empirical conclusion is narrow and design-specific: the intended security quantity is not identifiable under these stimuli. Do not say that adversarial intent does not exist or that the model contains no relevant information."
       />
 
-      {/* ── 7 · Verdict ────────────────────────────────────────────────── */}
+      {/* ── 8 · Verdict ────────────────────────────────────────────────── */}
       <BigNumber
         kicker="Level 0 · criterion outcome · Pythia-6.9B"
         value="FAIL"
-        caption={
-          <span>
-            Worst hard-gate deviation 0.347 ·{" "}
-            <span style={{ fontVariantNumeric: "tabular-nums", fontWeight: 750 }}>
-              11.6×
-            </span>{" "}
-            the tolerance
-          </span>
-        }
+        caption="Worst hard-gate deviation 0.347 — over eleven times the tolerance."
         foot="excl-encoding null · worst AUC 0.8472 · same qualitative outcome at 1.4B"
         nav="BC1 fails"
         notes="AUC 0.000 and 1.000 are equally perfect discrimination after orientation; BC1 is evaluated by distance from chance. The hard gate is the excl-encoding fragmentation/semantic/priming null. Supporting, non-gating: 8/8 encoding variants reach AUC 1.000 — sensitivity to stimulus form — while the excl-encoding failure shows the hard-gate result is not driven by encoding alone. Structural audit completed under the OSF Preregistration Amendment (2026-06-19): turn-count parity, source-family balance, source-class isolation. Under this design the observed discrimination cannot be uniquely attributed to adversarial intent; the same qualitative BC1 outcome is observed at 6.9B and 1.4B."
       />
 
-      {/* ── 8 · The chart ──────────────────────────────────────────────── */}
+      {/* ── 9 · The chart ──────────────────────────────────────────────── */}
       <Slide
         nav="Null by layer"
         notes="This is the encoding-class isolation diagnostic — a per-layer supporting scan, distinct from the pre-registered hard gate reported on the verdict slide. The notebook validator explicitly warns against conflating the two: the diagnostic peaks at 0.3884 (L4) while the hard-gate worst deviation is 0.347. The chart labels both values directly; point to the labels before discussing the depth profile. If asked, the scan characterizes depth structure; it is not the gate statistic. In the 1.4B model the excl-encoding null likewise exceeds tolerance at every reported scanned layer (hard-gate worst deviation 0.339), though the depth profile differs — see backup B1."
@@ -291,7 +348,7 @@ export default function App() {
           Isolation diagnostic · |AUC − 0.5| by layer · Pythia-6.9B
         </p>
         <h2 className="headline" style={{ fontSize: "96%" }}>
-          Hard gate fails; isolation diagnostic exceeds tolerance at every depth.
+          Outside tolerance at every scanned depth.
         </h2>
         <ThresholdBarChart
           data={[
@@ -341,7 +398,7 @@ export default function App() {
         </p>
       </Slide>
 
-      {/* ── 9 · Cross-scale ────────────────────────────────────────────── */}
+      {/* ── 10 · Cross-scale ────────────────────────────────────────────── */}
       <Slide
         center
         nav="Two scales"
@@ -364,8 +421,8 @@ export default function App() {
           }}
         >
           {[
-            { value: "11.6×", label: "Pythia-6.9B · tolerance multiple" },
-            { value: "11.3×", label: "Pythia-1.4B · tolerance multiple" },
+            { value: "0.347", label: "Pythia-6.9B" },
+            { value: "0.339", label: "Pythia-1.4B" },
           ].map((s) => (
             <div key={s.label} style={{ textAlign: "center" }}>
               <div
@@ -387,14 +444,14 @@ export default function App() {
                   opacity: 0.75,
                 }}
               >
-                {s.label}
+                {s.label} · worst deviation
               </div>
             </div>
           ))}
         </div>
       </Slide>
 
-      {/* ── 10 · Numbers placed ────────────────────────────────────────── */}
+      {/* ── 11 · Numbers placed ────────────────────────────────────────── */}
       <Contrast
         kicker="Existing run"
         title="Same numbers. Different questions."
@@ -420,7 +477,7 @@ export default function App() {
         notes="The same measurements answer different questions once the gate fails. High discrimination establishes structure in the current stimuli; it does not identify adversarial intent. Keep the encoding-variant panel supporting and non-gating. This slide prepares the distinction between identification and utilization. Q&A elevator rebuttal: “A detector can discriminate the null labels and still fail to identify adversarial intent; here, the target variable is absent from both classes, so high null AUC is evidence of confounding structure, not successful intent detection.”"
       />
 
-      {/* ── 11 · Utilization ───────────────────────────────────────────── */}
+      {/* ── 12 · Utilization ───────────────────────────────────────────── */}
       <BigNumber
         kicker="Supporting analysis · Level 3 · Pythia-6.9B"
         value={<CountUp to={14} suffix="%" />}
@@ -430,7 +487,7 @@ export default function App() {
         notes="The exact percentage is less important than what it rules out: the learned direction is not merely a passive statistical correlate with no functional role under this intervention. Editing the direction changes model outputs in 56 of 400 tested pairs. Under failed BC1, this supports utilization of an unidentified computational feature—not utilization of adversarial intent. Avoid calling the feature inert, and avoid claiming that unintended side effects are likely. The defensible statement is that effective interventions on unidentified features may alter computations beyond the intended target."
       />
 
-      {/* ── 12 · Identification vs utilization ─────────────────────────── */}
+      {/* ── 13 · Identification vs utilization ─────────────────────────── */}
       <Contrast
         kicker="Two kinds of evidence"
         title="Utilization without identification is not interpretation."
@@ -454,7 +511,7 @@ export default function App() {
         notes="BC1 and patching answer orthogonal questions. BC1 supports claims about what a feature can be said to represent. Patching supports claims about whether downstream computation depends on that feature under a specified intervention. This study observes utilization without identification. For AI security, a successful activation edit or monitor is not by itself evidence that the edited feature corresponds to the intended security concept. Until the construct is identified, interpret the intervention as acting on an unidentified computational feature."
       />
 
-      {/* ── 13 · Closer / transition ───────────────────────────────────── */}
+      {/* ── 14 · Closer / transition ───────────────────────────────────── */}
       <Slide
         center
         nav="The next question"
@@ -478,7 +535,7 @@ export default function App() {
         </Build>
       </Slide>
 
-      {/* ── 14 · Section: program ──────────────────────────────────────── */}
+      {/* ── 15 · Section: program ──────────────────────────────────────── */}
       <Section
         n="02"
         kicker="Research program"
@@ -487,7 +544,7 @@ export default function App() {
         notes="Transition from the conceptual distinction to the plan. Every month answers one unresolved question, not merely a list of analyses. The four questions: why is the null separable; what owns the variation; does downstream computation depend on the component; and how do we identify policy with a crossed design that separates surface form from downstream policy."
       />
 
-      {/* ── 15 · Hierarchy ─────────────────────────────────────────────── */}
+      {/* ── 16 · Hierarchy ─────────────────────────────────────────────── */}
       <Steps
         kicker="Evidence architecture"
         title="Only one level permits attribution."
@@ -513,7 +570,7 @@ export default function App() {
         notes="BC1 does not compete with dPCA or erasure; it determines whether those tools have a well-posed target. Methods per level — Level 1: mixed effects, VPCs, Fisher, Mahalanobis (quantify nuisance variation without semantic attribution). Level 2: dPCA, LEACE, INLP under an identifiable crossed design. Level 3: LayerNorm tests, patching, interventions. Mixed effects can characterize nuisance variation in Phase I; dPCA requires the V2 crossed design."
       />
 
-      {/* ── 16 · Four months ───────────────────────────────────────────── */}
+      {/* ── 17 · Four months ───────────────────────────────────────────── */}
       <Slide
         nav="Four months"
         notes="The timeline is organized by scientific questions. Phase I stays within claims licensed by the current data; the final month specifies and pilots the crossed design needed for Level 2. Month 1 detail: extend the completed structural audit with surprisal diagnostics and explicit unmatched-content limits; complete E1 LayerNorm and E3 scale-controlled geometry; deliverable is a construction-and-mechanism memo with reproducible figures. Month 2: fit per-observation probe margin, displacement, and activation norm with crossed effects for template/frame and encoding variant; report VPCs and uncertainty; extend E5 continuous geometry in raw residual space with SAE corroboration. Month 3: complete E6 abbreviation endpoint analysis; conditional on compute, run E2 ambient baseline and E7 controlled patching with random-direction, random-layer, and pre/post-LayerNorm controls; deliverable is the least-committal utilization assessment. Month 4: specify and pilot surface form × downstream policy stimuli, add action-space readouts, predefine dPCA marginalizations and LEACE/INLP erasure tests, lock V1 positive control plus V3 cross-architecture replication criteria."
@@ -562,7 +619,7 @@ export default function App() {
         </div>
       </Slide>
 
-      {/* ── 17 · Milestones ────────────────────────────────────────────── */}
+      {/* ── 18 · Milestones ────────────────────────────────────────────── */}
       <Slide
         center
         nav="Milestones"
@@ -718,21 +775,9 @@ export default function App() {
           </div>
         </div>
         <p className="subhead" style={{ fontSize: "88%", opacity: 0.7 }}>
-          raw AUC before reorientation · semantic 1.0000 · priming 0.9961 ·
-          fragmentation 0.2318 (anti-oriented)
+          semantic 1.0000 · priming 0.9961 · fragmentation 0.2318 before
+          reorientation
         </p>
-      </Slide>
-
-      {/* ── Handoff · Questions (outside the main flow) ───────────── */}
-      <Slide
-        center
-        nav="Questions"
-        notes="Optional handoff slide. Use only when a clean transition into discussion is helpful; otherwise end on the final substantive slide."
-      >
-        <p className="kicker" style={{ marginInline: "auto" }}>Thank you</p>
-        <h2 className="display" style={displayStrong}>
-          Questions?
-        </h2>
       </Slide>
     </Deck>
   );
